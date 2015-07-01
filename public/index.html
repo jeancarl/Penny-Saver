@@ -1,0 +1,67 @@
+<!-- Filename: public/index.html -->
+<!DOCTYPE html>
+<html ng-app="pennySaverApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Penny Saver</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+  	<script src="pennysaver.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 20px;
+        padding-bottom: 40px;
+      }
+
+      .container-narrow {
+        margin: 0 auto;
+        max-width: 700px;
+      }
+
+      .container-narrow > hr {
+        margin: 30px 0;
+      }
+
+      .marketing {
+        margin: 60px 0;
+      }
+
+      .marketing p + h4 {
+        margin-top: 28px;
+      }
+
+      .result {
+      	padding-top: 5px;
+      }
+    </style>
+  </head>
+
+  <body ng-controller="PennySaverCtrl">
+    <div class="container-narrow">
+      <div class="masthead">
+        <h3 class="muted">Penny Saver</h3>
+      </div>
+      <hr>
+      <div class="row-fluid marketing" ng-hide="balance">
+        <a href="/oauth">Sign in with Venmo</a>
+      </div>	
+      <div class="row-fluid marketing" ng-show="balance">
+        <p>You have saved ${{balance}}</p>
+        <p><input type="button" ng-show="active" ng-click="stopService()" value="Stop Penny Saver" /> <input type="button" ng-hide="active" ng-click="startService()" value="Start Penny Saver" /></p>
+        <p>Threshold: <input type="text" ng-model="threshold" /> <input type="button" ng-click="changeThreshold()" value="Change" /></p>
+      </div>
+      <h2>How Penny Saver works</h2>
+        <p>Everyday, Penny Saver will deduct any pennies you have in your Venmo account balance. For example, if you have $14.34 in your Venmo account, Penny Saver will take 34 cents and put it in a Penny Saver account. These pennies start to add up!</p>
+        <p>You can always come back to this page to see your balance, or check the amount when Penny Saver deducts any pennies.</p>
+        <p>You can choose at what threshold Penny Saver will not deduct pennies. For example, if you choose $10.00, and your balance is $9.68, Penny Saver won't take the 68 cents. When your Venmo account balance goes above $10.00, Penny Saver will reactivate.</p>
+        <p>Saving more is easy! If you want to manually add money to your Penny Saver account, you can pay <b>pennysaver</b> from your Venmo account. </p>
+        <p>Finally, when you want your money back, you can charge <b>pennysaver</b> up to the total amount. You should see the money back in your Venmo account shortly. Just remember, if you don't do this step, you'll be on the way to saving for a rainy day, when you really need those pennies.</p>
+        <p><a href="http://venmo.com">Go to your Venmo account</a> or <a href="/logout">Logout of Penny Saver</a></p>
+		</div>
+		<hr />
+    <div>
+    	Powered by <a href="http://venmo.com" target="_blank">Venmo</a>.
+    </div>
+  </body>
+</html>
